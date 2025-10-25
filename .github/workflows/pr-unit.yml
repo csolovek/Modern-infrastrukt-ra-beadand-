@@ -1,7 +1,7 @@
 name: PR Unit Tests
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   unit:
     runs-on: ubuntu-latest
@@ -17,4 +17,3 @@ jobs:
       - name: Run unit tests
         run: |
           pytest tests/unit -q
-
