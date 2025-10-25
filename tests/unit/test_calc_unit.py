@@ -14,3 +14,6 @@ def test_divide_by_zero():
     with pytest.raises(ValueError):
         c.divide(1, 0)
 
+def test_add():
+    c = Calculator()
+    assert c.add(2, 3) == 6  # wrong on purpose
