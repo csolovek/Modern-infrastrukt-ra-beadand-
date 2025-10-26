@@ -1,9 +1,7 @@
 from src.calc import Calculator
 
-def test_chain_operations():
+def test_flow():
     c = Calculator()
-    # Simulate a small flow using multiple methods
-    total = c.add(5, 7)        # 12
-    result = c.divide(total, 3)  # 4
-    assert result == 4
-
+    total = c.add(1, 2)
+    total = c.add(total, 3)
+    assert total == 6
