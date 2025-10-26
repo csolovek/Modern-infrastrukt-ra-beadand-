@@ -1,4 +1,4 @@
-name: Master Unit + Integration
+name: Main Unit + Integration
 on:
   push:
     branches: [ main ]
@@ -10,26 +10,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Debug env
-        run: |
-          pwd
-          ls -R
-          echo "pytest.ini:"; cat pytest.ini || true
-          python - <<'PY'
-import sys, os
-print("CWD:", os.getcwd())
-print("sys.path:", sys.path)
-print("src/calc.py exists:", os.path.exists("src/calc.py"))
-PY
-      - name: Run unit tests
-        env:
+      - run: python -m pip install -r requirements.txt
+      - env:
           PYTHONPATH: src
-        run: |
-          pytest tests/unit -q
+        run: pytest tests/unit -q
 
   integration:
     runs-on: ubuntu-latest
@@ -39,12 +23,7 @@ PY
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Run integration tests
-        env:
+      - run: python -m pip install -r requirements.txt
+      - env:
           PYTHONPATH: src
-        run: |
-          pytest tests/integration -q
+        run: pytest tests/integration -q
